@@ -17,9 +17,7 @@ void Core::Run()
 	{
 		Update();
 
-		BeginDrawing();
 		Draw();
-		EndDrawing();
 	}
 }
 
@@ -35,5 +33,6 @@ void Core::Update()
 
 void Core::Draw()
 {
-	// ...
+	BeginDrawing();
+	EndDrawing();
 }
