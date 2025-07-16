@@ -139,10 +139,12 @@
     <ClCompile Include="src\Core\Core.cpp" />
     <ClCompile Include="src\Input\Input.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\ResourceManager\ResourceManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Core.hpp" />
     <ClInclude Include="src\Input\Input.hpp" />
+    <ClInclude Include="src\ResourceManager\ResourceManager.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

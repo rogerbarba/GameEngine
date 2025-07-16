@@ -9,6 +9,17 @@ void Core::Init()
 	InitWindow(this->windowWidth, this->windowHeight, this->windowTitle.c_str());
 
 	SetTargetFPS(this->targetFPS);
+
+	InitAudioDevice();
+}
+
+void Core::DeInit()
+{
+	CloseWindow();
+
+	CloseAudioDevice();
+
+	resourceManager.unloadAll();
 }
 
 void Core::Run()
@@ -19,11 +30,6 @@ void Core::Run()
 
 		Draw();
 	}
-}
-
-void Core::DeInit()
-{
-	CloseWindow();
 }
 
 void Core::Update()
