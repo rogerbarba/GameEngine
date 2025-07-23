@@ -146,6 +146,9 @@
     <ClInclude Include="src\Input\Input.hpp" />
     <ClInclude Include="src\ResourceManager\ResourceManager.hpp" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\.gitkeep" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
