@@ -3,15 +3,18 @@
 #include "../Input/Input.hpp"
 #include "../ResourceManager/ResourceManager.hpp"
 
+// Forward declaration
+class SceneManager;
+
 class Scene
 {
 protected:
 	Input& input;
 	ResourceManager& resourceManager;
+	SceneManager& sceneManager;
 
 public:
-	Scene(Input& input, ResourceManager& resourceManager)
-		: input(input), resourceManager(resourceManager) { }
+	Scene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager);
 
 	virtual void init() = 0;
 
