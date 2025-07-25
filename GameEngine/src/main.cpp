@@ -4,11 +4,11 @@ int main()
 {
 	Core core(800, 600, "Game Engine", 60);
 
-	core.Init();
+	core.init();
 
-	core.Run();
+	core.run();
 
-	core.DeInit();
+	core.deInit();
 
 	return 0;
 }

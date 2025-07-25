@@ -12,18 +12,17 @@ private:
 	std::string windowTitle;
 	int targetFPS;
 
-	void Update();
-	void Draw();
+	void update();
+	void draw();
 
-	Input input;
 	ResourceManager resourceManager;
 
 public:
 	Core(int windowWidth, int windowHeight, std::string windowTitle, int targetFPS);
 
-	void Init();
+	void init();
 
-	void Run();
+	void run();
 
-	void DeInit();
+	void deInit();
 };

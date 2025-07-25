@@ -140,11 +140,14 @@
     <ClCompile Include="src\Input\Input.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ResourceManager\ResourceManager.cpp" />
+    <ClCompile Include="src\Scene\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Core.hpp" />
     <ClInclude Include="src\Input\Input.hpp" />
     <ClInclude Include="src\ResourceManager\ResourceManager.hpp" />
+    <ClInclude Include="src\Scene\Scene.hpp" />
+    <ClInclude Include="src\Scene\SceneManager.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\.gitkeep" />

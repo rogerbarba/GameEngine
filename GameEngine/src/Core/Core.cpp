@@ -4,7 +4,7 @@
 Core::Core(int windowWidth, int windowHeight, std::string windowTitle, int targetFPS)
 	: windowWidth(windowWidth), windowHeight(windowHeight), windowTitle(windowTitle), targetFPS(targetFPS) { }
 
-void Core::Init()
+void Core::init()
 {
 	InitWindow(this->windowWidth, this->windowHeight, this->windowTitle.c_str());
 
@@ -13,7 +13,7 @@ void Core::Init()
 	InitAudioDevice();
 }
 
-void Core::DeInit()
+void Core::deInit()
 {
 	CloseWindow();
 
@@ -22,22 +22,22 @@ void Core::DeInit()
 	resourceManager.unloadAll();
 }
 
-void Core::Run()
+void Core::run()
 {
 	while (!WindowShouldClose())
 	{
-		Update();
+		update();
 
-		Draw();
+		draw();
 	}
 }
 
-void Core::Update()
+void Core::update()
 {
 	// ...
 }
 
-void Core::Draw()
+void Core::draw()
 {
 	BeginDrawing();
 	EndDrawing();
