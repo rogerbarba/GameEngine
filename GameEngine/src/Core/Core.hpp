@@ -21,11 +21,9 @@ private:
 	SceneManager sceneManager;
 
 public:
-	Core(int windowWidth, int windowHeight, std::string windowTitle, int targetFPS);
-
-	void init();
+	Core(int windowWidth, int windowHeight, const std::string& windowTitle, int targetFPS);
 
 	void run();
 
-	void deInit();
+	~Core();
 };

@@ -1,6 +1,7 @@
 #include "MenuScene.hpp"
 
-void MenuScene::init()
+MenuScene::MenuScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager)
+	: Scene(input, resourceManager, sceneManager)
 {
 	// ...
 }
@@ -15,7 +16,7 @@ void MenuScene::draw()
 	// ...
 }
 
-void MenuScene::deInit()
+MenuScene::~MenuScene()
 {
 	// ...
 }

@@ -2,16 +2,9 @@
 
 void SceneManager::changeScene(Scene* scene)
 {
-    if (currentScene)
-    {
-        currentScene->deInit();
-
-        delete currentScene;
-    }
+    delete currentScene;
 
     currentScene = scene;
-
-    currentScene->init();
 }
 
 void SceneManager::update()
@@ -24,12 +17,10 @@ void SceneManager::draw()
     currentScene->draw();
 }
 
-void SceneManager::deInit()
+SceneManager::~SceneManager()
 {
     if (currentScene)
     {
-        currentScene->deInit();
-
         delete currentScene;
 
         currentScene = nullptr;

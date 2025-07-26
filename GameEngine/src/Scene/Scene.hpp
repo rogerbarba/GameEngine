@@ -16,11 +16,9 @@ protected:
 public:
 	Scene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager);
 
-	virtual void init() = 0;
-
 	virtual void update() = 0;
 
 	virtual void draw() = 0;
 
-	virtual void deInit() = 0;
+	virtual ~Scene() = default;
 };

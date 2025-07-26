@@ -4,10 +4,8 @@
 #include "../Scene/Scenes/MenuScene.hpp"
 // ... other scences
 
-Core::Core(int windowWidth, int windowHeight, std::string windowTitle, int targetFPS)
-	: windowWidth(windowWidth), windowHeight(windowHeight), windowTitle(windowTitle), targetFPS(targetFPS) { }
-
-void Core::init()
+Core::Core(int windowWidth, int windowHeight, const std::string& windowTitle, int targetFPS)
+	: windowWidth(windowWidth), windowHeight(windowHeight), windowTitle(windowTitle), targetFPS(targetFPS)
 {
 	InitWindow(this->windowWidth, this->windowHeight, this->windowTitle.c_str());
 
@@ -18,13 +16,11 @@ void Core::init()
 	sceneManager.changeScene(new MenuScene(this->input, this->resourceManager, this->sceneManager));
 }
 
-void Core::deInit()
+Core::~Core()
 {
 	CloseWindow();
 
 	CloseAudioDevice();
-
-	sceneManager.deInit();
 
 	resourceManager.unloadAll();
 }
