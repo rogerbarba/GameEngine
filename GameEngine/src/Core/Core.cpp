@@ -1,8 +1,10 @@
 #include "raylib.h"
 #include "Core.hpp"
 #include "../Scene/Scene.hpp"
-#include "../Scene/Scenes/MenuScene.hpp"
-// ... other scences
+#include "../Scene/Scenes/MenuScene/MenuScene.hpp"
+#include "../Scene/Scenes/GameScene/GameScene.hpp"
+#include "../Scene/Scenes/PauseScene/PauseScene.hpp"
+#include "../Scene/Scenes/GameOverScene/GameOverScene.hpp"
 
 Core::Core(int windowWidth, int windowHeight, const std::string& windowTitle, int targetFPS)
 	: windowWidth(windowWidth), windowHeight(windowHeight), windowTitle(windowTitle), targetFPS(targetFPS)

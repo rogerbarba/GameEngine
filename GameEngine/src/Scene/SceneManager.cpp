@@ -2,7 +2,10 @@
 
 void SceneManager::changeScene(Scene* scene)
 {
-    delete currentScene;
+    if (currentScene)
+    {
+        delete currentScene;
+    }
 
     currentScene = scene;
 }
