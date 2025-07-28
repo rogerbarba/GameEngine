@@ -1,3 +1,4 @@
+#include "../../SceneManager.hpp"
 #include "GameOverScene.hpp"
 
 GameOverScene::GameOverScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager)

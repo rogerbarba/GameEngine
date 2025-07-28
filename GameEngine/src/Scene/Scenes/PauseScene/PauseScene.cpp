@@ -1,3 +1,4 @@
+#include "../../SceneManager.hpp"
 #include "PauseScene.hpp"
 
 PauseScene::PauseScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager)
