@@ -25,8 +25,8 @@ public:
 	Music& getMusic(const std::string& name);
 
 	// Fonts
-	Font& loadFont(const std::string name, const char* fileName);
-	Font& getFont(const std::string name);
+	Font& loadFont(const std::string& name, const char* fileName);
+	Font& getFont(const std::string& name);
 
 	// Unloads
 	void unloadAll();
