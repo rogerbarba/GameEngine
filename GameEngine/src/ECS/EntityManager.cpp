@@ -9,6 +9,15 @@ Entity EntityManager::createEntity()
 	return entity;
 }
 
+void EntityManager::destroyEntity(Entity entity)
+{
+	aliveEntities.erase(entity);
+	transforms.erase(entity);
+	velocities.erase(entity);
+	sprites.erase(entity);
+	healths.erase(entity);
+}
+
 void EntityManager::nameEntity(Entity entity, const std::string& name)
 {
 	namedEntities.emplace(name, entity);
@@ -19,15 +28,12 @@ Entity EntityManager::getNamedEntity(const std::string& name)
 	return namedEntities.at(name);
 }
 
-void EntityManager::destroyEntity(Entity entity)
+void EntityManager::destroyNamedEntity(const std::string& name)
 {
-	aliveEntities.erase(entity);
-	transforms.erase(entity);
-	velocities.erase(entity);
-	sprites.erase(entity);
+	namedEntities.erase(name);
 }
 
-void EntityManager::addTransform(Entity entity, const Transform& transform)
+void EntityManager::addTransform(Entity entity, const TransformComponent& transform)
 {
 	transforms.emplace(entity, transform);
 }
@@ -47,12 +53,14 @@ void EntityManager::addHealth(Entity entity, const Health& health)
 	healths.emplace(entity, health);
 }
 
-Transform* EntityManager::getTransform(Entity entity)
+TransformComponent* EntityManager::getTransform(Entity entity)
 {
 	if (transforms.find(entity) != transforms.end())
 	{
 		return &transforms.at(entity);
 	}
+
+	return nullptr;
 }
 
 Sprite* EntityManager::getSprite(Entity entity)
@@ -61,6 +69,8 @@ Sprite* EntityManager::getSprite(Entity entity)
 	{
 		return &sprites.at(entity);
 	}
+
+	return nullptr;
 }
 
 Velocity* EntityManager::getVelocity(Entity entity)
@@ -69,6 +79,8 @@ Velocity* EntityManager::getVelocity(Entity entity)
 	{
 		return &velocities.at(entity);
 	}
+
+	return nullptr;
 }
 
 Health* EntityManager::getHealth(Entity entity)
@@ -77,4 +89,6 @@ Health* EntityManager::getHealth(Entity entity)
 	{
 		return &healths.at(entity);
 	}
+
+	return nullptr;
 }

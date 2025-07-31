@@ -151,8 +151,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Core.hpp" />
-    <ClInclude Include="src\ECS\Components.h" />
-    <ClInclude Include="src\ECS\Entity.h" />
+    <ClInclude Include="src\ECS\Components.hpp" />
+    <ClInclude Include="src\ECS\Entity.hpp" />
     <ClInclude Include="src\ECS\EntityManager.hpp" />
     <ClInclude Include="src\Input\Input.hpp" />
     <ClInclude Include="src\ResourceManager\ResourceManager.hpp" />

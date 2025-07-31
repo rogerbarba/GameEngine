@@ -80,10 +80,10 @@
     <ClInclude Include="src\Scene\Scenes\GameOverScene\GameOverScene.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ECS\Entity.h">
+    <ClInclude Include="src\ECS\Entity.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ECS\Components.h">
+    <ClInclude Include="src\ECS\Components.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\ECS\EntityManager.hpp">

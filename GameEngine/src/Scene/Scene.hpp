@@ -3,8 +3,8 @@
 #include "../Input/Input.hpp"
 #include "../ResourceManager/ResourceManager.hpp"
 #include "../ECS/EntityManager.hpp"
-#include "../ECS/Entity.h"
-#include "../ECS/Components.h"
+#include "../ECS/Entity.hpp"
+#include "../ECS/Components.hpp"
 
 // Forward declaration to avoid infinite loop with SceneManager.hpp
 class SceneManager;

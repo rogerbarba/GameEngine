@@ -2,7 +2,8 @@
 
 #include "raylib.h"
 
-struct Transform
+// Not simply named Component because it interferes with a raylib.h definition
+struct TransformComponent
 {
 	Vector2 position;
 	float rotation = 0.0f;
