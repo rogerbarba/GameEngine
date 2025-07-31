@@ -1,7 +1,5 @@
-#include "MenuScene.hpp"
 #include "../../SceneManager.hpp"
-#include "../GameScene/GameScene.hpp"
-#include <iostream>
+#include "MenuScene.hpp"
 
 MenuScene::MenuScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager)
 	: Scene(input, resourceManager, sceneManager, entityManager)
