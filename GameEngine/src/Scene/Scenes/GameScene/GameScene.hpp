@@ -5,7 +5,7 @@
 class GameScene : public Scene
 {
 public:
-	GameScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager);
+	GameScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager);
 
 	void update() override;
 

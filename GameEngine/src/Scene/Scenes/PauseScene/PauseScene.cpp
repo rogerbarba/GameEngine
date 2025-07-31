@@ -1,8 +1,8 @@
 #include "../../SceneManager.hpp"
 #include "PauseScene.hpp"
 
-PauseScene::PauseScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager)
-	: Scene(input, resourceManager, sceneManager)
+PauseScene::PauseScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager)
+	: Scene(input, resourceManager, sceneManager, entityManager)
 {
 	// ...
 }

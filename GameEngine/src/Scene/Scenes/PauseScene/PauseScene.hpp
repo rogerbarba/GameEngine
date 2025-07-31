@@ -5,7 +5,7 @@
 class PauseScene : public Scene
 {
 public:
-	PauseScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager);
+	PauseScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager);
 
 	void update() override;
 

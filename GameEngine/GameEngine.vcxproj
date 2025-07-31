@@ -138,6 +138,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\Core\Core.cpp" />
+    <ClCompile Include="src\ECS\EntityManager.cpp" />
     <ClCompile Include="src\Input\Input.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ResourceManager\ResourceManager.cpp" />
@@ -150,6 +151,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core\Core.hpp" />
+    <ClInclude Include="src\ECS\Components.h" />
+    <ClInclude Include="src\ECS\Entity.h" />
+    <ClInclude Include="src\ECS\EntityManager.hpp" />
     <ClInclude Include="src\Input\Input.hpp" />
     <ClInclude Include="src\ResourceManager\ResourceManager.hpp" />
     <ClInclude Include="src\Scene\Scene.hpp" />

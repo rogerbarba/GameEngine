@@ -3,18 +3,15 @@
 #include "../MenuScene/MenuScene.hpp"
 #include <iostream>
 
-GameScene::GameScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager)
-	: Scene(input, resourceManager, sceneManager)
+GameScene::GameScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager)
+	: Scene(input, resourceManager, sceneManager, entityManager)
 {
-	/*std::cout << "currentScene: GameScene" << std::endl;*/
+	// ...
 }
 
 void GameScene::update()
 {
-	/*if (input.isKeyPressed(KEY_ONE))
-	{
-		sceneManager.changeScene(new MenuScene(this->input, this->resourceManager, this->sceneManager));
-	}*/
+	// ...
 }
 
 void GameScene::draw()
