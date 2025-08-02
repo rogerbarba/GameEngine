@@ -55,40 +55,20 @@ void EntityManager::addHealth(Entity entity, const Health& health)
 
 TransformComponent* EntityManager::getTransform(Entity entity)
 {
-	if (transforms.find(entity) != transforms.end())
-	{
-		return &transforms.at(entity);
-	}
-
-	return nullptr;
+	return &transforms.at(entity);
 }
 
 Sprite* EntityManager::getSprite(Entity entity)
 {
-	if (sprites.find(entity) != sprites.end())
-	{
-		return &sprites.at(entity);
-	}
-
-	return nullptr;
+	return &sprites.at(entity);
 }
 
 Velocity* EntityManager::getVelocity(Entity entity)
 {
-	if (velocities.find(entity) != velocities.end())
-	{
-		return &velocities.at(entity);
-	}
-
-	return nullptr;
+	return &velocities.at(entity);
 }
 
 Health* EntityManager::getHealth(Entity entity)
 {
-	if (healths.find(entity) != healths.end())
-	{
-		return &healths.at(entity);
-	}
-
-	return nullptr;
+	return &healths.at(entity);
 }
