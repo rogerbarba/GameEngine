@@ -35,4 +35,6 @@ public:
 	Sprite* getSprite(Entity entity);
 	Velocity* getVelocity(Entity entity);
 	Health* getHealth(Entity entity);
+
+	// TODO: Queries
 };
