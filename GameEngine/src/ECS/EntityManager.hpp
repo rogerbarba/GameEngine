@@ -24,7 +24,7 @@ public:
 
 	void nameEntity(Entity entity, const std::string& name);
 	Entity getNamedEntity(const std::string& name);
-	void destroyNamedEntity(const std::string& name);
+	void unnameEntity(const std::string& name);
 
 	void addTransform(Entity entity, const TransformComponent& transform);
 	void addSprite(Entity entity, const Sprite& sprite);

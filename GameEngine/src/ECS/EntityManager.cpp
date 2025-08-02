@@ -28,7 +28,7 @@ Entity EntityManager::getNamedEntity(const std::string& name)
 	return namedEntities.at(name);
 }
 
-void EntityManager::destroyNamedEntity(const std::string& name)
+void EntityManager::unnameEntity(const std::string& name)
 {
 	namedEntities.erase(name);
 }
