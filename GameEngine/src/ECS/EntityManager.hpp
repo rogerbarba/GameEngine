@@ -4,6 +4,7 @@
 #include "Components.hpp"
 #include <unordered_set>
 #include <unordered_map>
+#include <vector>
 #include <string>
 
 class EntityManager
@@ -36,5 +37,8 @@ public:
 	Velocity* getVelocity(Entity entity);
 	Health* getHealth(Entity entity);
 
-	// TODO: Queries
+	std::vector<Entity> getEntitiesWithTransform();
+	std::vector<Entity> getEntitiesWithSprite();
+	std::vector<Entity> getEntitiesWithVelocity();
+	std::vector<Entity> getEntitiesWithHealth();
 };
