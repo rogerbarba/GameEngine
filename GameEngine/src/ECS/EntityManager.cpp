@@ -12,6 +12,16 @@ Entity EntityManager::createEntity()
 void EntityManager::destroyEntity(Entity entity)
 {
 	aliveEntities.erase(entity);
+
+	// Delete entity from namedEntities if it is named
+	for (const auto& pair : namedEntities)
+	{
+		if (pair.second == entity)
+		{
+			namedEntities.erase(pair.first);
+		}
+	}
+
 	transforms.erase(entity);
 	velocities.erase(entity);
 	sprites.erase(entity);
@@ -26,11 +36,6 @@ void EntityManager::nameEntity(Entity entity, const std::string& name)
 Entity EntityManager::getNamedEntity(const std::string& name)
 {
 	return namedEntities.at(name);
-}
-
-void EntityManager::unnameEntity(const std::string& name)
-{
-	namedEntities.erase(name);
 }
 
 void EntityManager::addTransform(Entity entity, const TransformComponent& transform)
