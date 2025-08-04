@@ -16,7 +16,10 @@ MenuScene::MenuScene(Input& input, ResourceManager& resourceManager, SceneManage
 void MenuScene::update()
 {
 	Entity player = entityManager.getNamedEntity("player");
+
 	TransformComponent* playerTransform = entityManager.getTransform(player);
+
+	std::cout << playerTransform->position.x << std::endl;
 }
 
 void MenuScene::draw()
