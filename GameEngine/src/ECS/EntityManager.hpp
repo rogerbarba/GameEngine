@@ -10,21 +10,25 @@
 class EntityManager
 {
 private:
+	// Entity
 	Entity nextID = 1;
 	std::unordered_set<Entity> aliveEntities;
 	std::unordered_map<std::string, Entity> namedEntities;
 
+	// Component
 	std::unordered_map<Entity, TransformComponent> transforms;
 	std::unordered_map<Entity, Sprite> sprites;
 	std::unordered_map<Entity, Velocity> velocities;
 	std::unordered_map<Entity, Health> healths;
 
 public:
+	// Entity
 	Entity createEntity();
 	void destroyEntity(Entity entity);
 	void nameEntity(Entity entity, const std::string& name);
 	Entity getNamedEntity(const std::string& name);
 
+	// Component
 	void addTransform(Entity entity, const TransformComponent& transform);
 	void addSprite(Entity entity, const Sprite& sprite);
 	void addVelocity(Entity entity, const Velocity& velocity);
@@ -35,6 +39,7 @@ public:
 	Velocity* getVelocity(Entity entity);
 	Health* getHealth(Entity entity);
 
+	// System
 	std::vector<Entity> getEntitiesWithTransform();
 	std::vector<Entity> getEntitiesWithSprite();
 	std::vector<Entity> getEntitiesWithVelocity();

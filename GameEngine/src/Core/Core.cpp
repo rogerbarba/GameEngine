@@ -3,7 +3,6 @@
 #include "../Scene/Scene.hpp"
 #include "../Scene/Scenes/MenuScene/MenuScene.hpp"
 #include "../Scene/Scenes/GameScene/GameScene.hpp"
-#include "../Scene/Scenes/PauseScene/PauseScene.hpp"
 #include "../Scene/Scenes/GameOverScene/GameOverScene.hpp"
 
 Core::Core(int windowWidth, int windowHeight, const std::string& windowTitle, int targetFPS)
