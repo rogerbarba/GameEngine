@@ -10,6 +10,17 @@ struct TransformComponent
 	Vector2 scale = { 1.0f, 1.0f };
 };
 
+struct RectangleShape {
+	float width;
+	float height;
+	Color color;
+};
+
+struct CircleShape {
+	float radius;
+	Color color;
+};
+
 struct Sprite
 {
 	Texture2D* texture;

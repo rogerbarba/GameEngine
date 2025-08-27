@@ -23,8 +23,10 @@ void EntityManager::destroyEntity(Entity entity)
 	}
 
 	transforms.erase(entity);
-	velocities.erase(entity);
+	rectangles.erase(entity);
+	circles.erase(entity);
 	sprites.erase(entity);
+	velocities.erase(entity);
 	healths.erase(entity);
 }
 
@@ -41,6 +43,16 @@ Entity EntityManager::getNamedEntity(const std::string& name)
 void EntityManager::addTransform(Entity entity, const TransformComponent& transform)
 {
 	transforms.emplace(entity, transform);
+}
+
+void EntityManager::addRectangle(Entity entity, const RectangleShape& rectangle)
+{
+	rectangles.emplace(entity, rectangle);
+}
+
+void EntityManager::addCircle(Entity entity, const CircleShape& circle)
+{
+	circles.emplace(entity, circle);
 }
 
 void EntityManager::addSprite(Entity entity, const Sprite& sprite)
@@ -64,6 +76,18 @@ TransformComponent* EntityManager::getTransform(Entity entity)
 	return (it != transforms.end()) ? &it->second : nullptr;
 }
 
+RectangleShape* EntityManager::getRectangle(Entity entity)
+{
+	auto it = rectangles.find(entity);
+	return (it != rectangles.end()) ? &it->second : nullptr;
+}
+
+CircleShape* EntityManager::getCircle(Entity entity)
+{
+	auto it = circles.find(entity);
+	return (it != circles.end()) ? &it->second : nullptr;
+}
+
 Sprite* EntityManager::getSprite(Entity entity)
 {
 	auto it = sprites.find(entity);
@@ -82,27 +106,43 @@ Health* EntityManager::getHealth(Entity entity)
 	return (it != healths.end()) ? &it->second : nullptr;
 }
 
-std::vector<Entity> EntityManager::getEntitiesWithTransform()
+std::vector<Entity> EntityManager::getEntitiesWithTransformAndRectangle()
 {
 	std::vector<Entity> result;
 	for (const auto& pair : transforms)
 	{
-		if (aliveEntities.find(pair.first) != aliveEntities.end())
+		Entity e = pair.first;
+		if (aliveEntities.find(e) != aliveEntities.end() && rectangles.find(e) != rectangles.end())
 		{
-			result.emplace_back(pair.first);
+			result.emplace_back(e);
 		}
 	}
 	return result;
 }
 
-std::vector<Entity> EntityManager::getEntitiesWithSprite()
+std::vector<Entity> EntityManager::getEntitiesWithTransformAndCircle()
 {
 	std::vector<Entity> result;
-	for (const auto& pair : sprites)
+	for (const auto& pair : transforms)
 	{
-		if (aliveEntities.find(pair.first) != aliveEntities.end())
+		Entity e = pair.first;
+		if (aliveEntities.find(e) != aliveEntities.end() && circles.find(e) != circles.end())
 		{
-			result.emplace_back(pair.first);
+			result.emplace_back(e);
+		}
+	}
+	return result;
+}
+
+std::vector<Entity> EntityManager::getEntitiesWithTransformAndSprite()
+{
+	std::vector<Entity> result;
+	for (const auto& pair : transforms)
+	{
+		Entity e = pair.first;
+		if (aliveEntities.find(e) != aliveEntities.end() && sprites.find(e) != sprites.end())
+		{
+			result.emplace_back(e);
 		}
 	}
 	return result;

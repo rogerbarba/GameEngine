@@ -9,8 +9,11 @@ MenuScene::MenuScene(Input& input, ResourceManager& resourceManager, SceneManage
 	Entity player = entityManager.createEntity();
 	entityManager.nameEntity(player, "player");
 	entityManager.addTransform(player, {
-		.position = { 0.0f, 0.0f }
+		.position = { 0.0f, 0.0f },
 	});
+	//entityManager.addSprite(player, {
+	//	...
+	//});
 }
 
 void MenuScene::update()

@@ -43,9 +43,5 @@ void Core::update()
 
 void Core::draw()
 {
-	BeginDrawing();
-
 	sceneManager.draw();
-
-	EndDrawing();
 }

@@ -17,6 +17,8 @@ private:
 
 	// Component
 	std::unordered_map<Entity, TransformComponent> transforms;
+	std::unordered_map<Entity, RectangleShape> rectangles;
+	std::unordered_map<Entity, CircleShape> circles;
 	std::unordered_map<Entity, Sprite> sprites;
 	std::unordered_map<Entity, Velocity> velocities;
 	std::unordered_map<Entity, Health> healths;
@@ -30,18 +32,23 @@ public:
 
 	// Component
 	void addTransform(Entity entity, const TransformComponent& transform);
+	void addRectangle(Entity entity, const RectangleShape& rectangle);
+	void addCircle(Entity entity, const CircleShape& circle);
 	void addSprite(Entity entity, const Sprite& sprite);
 	void addVelocity(Entity entity, const Velocity& velocity);
 	void addHealth(Entity entity, const Health& health);
 
 	TransformComponent* getTransform(Entity entity);
+	RectangleShape* getRectangle(Entity entity);
+	CircleShape* getCircle(Entity entity);
 	Sprite* getSprite(Entity entity);
 	Velocity* getVelocity(Entity entity);
 	Health* getHealth(Entity entity);
 
 	// System
-	std::vector<Entity> getEntitiesWithTransform();
-	std::vector<Entity> getEntitiesWithSprite();
+	std::vector<Entity> getEntitiesWithTransformAndRectangle();
+	std::vector<Entity> getEntitiesWithTransformAndCircle();
+	std::vector<Entity> getEntitiesWithTransformAndSprite();
 	std::vector<Entity> getEntitiesWithVelocity();
 	std::vector<Entity> getEntitiesWithHealth();
 };
