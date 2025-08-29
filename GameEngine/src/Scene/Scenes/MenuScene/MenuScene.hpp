@@ -5,7 +5,7 @@
 class MenuScene : public Scene
 {
 public:
-	MenuScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager);
+	MenuScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager, Renderer& renderer);
 
 	void update() override;
 

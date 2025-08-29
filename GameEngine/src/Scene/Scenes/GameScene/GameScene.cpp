@@ -1,8 +1,8 @@
 #include "../../SceneManager.hpp"
 #include "GameScene.hpp"
 
-GameScene::GameScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager)
-	: Scene(input, resourceManager, sceneManager, entityManager)
+GameScene::GameScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager, Renderer& renderer)
+	: Scene(input, resourceManager, sceneManager, entityManager, renderer)
 {
 	// ...
 }

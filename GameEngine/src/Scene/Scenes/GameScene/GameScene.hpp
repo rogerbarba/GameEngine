@@ -8,7 +8,7 @@ private:
 	bool paused = false;
 
 public:
-	GameScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager);
+	GameScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager, Renderer& renderer);
 
 	void update() override;
 

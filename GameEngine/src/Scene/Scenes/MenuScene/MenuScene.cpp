@@ -2,8 +2,8 @@
 #include "MenuScene.hpp"
 #include <iostream>
 
-MenuScene::MenuScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager)
-	: Scene(input, resourceManager, sceneManager, entityManager)
+MenuScene::MenuScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager, Renderer& renderer)
+	: Scene(input, resourceManager, sceneManager, entityManager, renderer)
 {
 	// Player entity
 	Entity player = entityManager.createEntity();

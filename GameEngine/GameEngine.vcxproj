@@ -137,6 +137,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Camera\Camera.cpp" />
     <ClCompile Include="src\Core\Core.cpp" />
     <ClCompile Include="src\ECS\EntityManager.cpp" />
     <ClCompile Include="src\Input\Input.cpp" />
@@ -150,6 +151,7 @@
     <ClCompile Include="src\Scene\Scenes\MenuScene\MenuScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Camera\Camera.hpp" />
     <ClInclude Include="src\Core\Core.hpp" />
     <ClInclude Include="src\ECS\Components.hpp" />
     <ClInclude Include="src\ECS\Entity.hpp" />

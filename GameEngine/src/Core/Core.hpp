@@ -5,6 +5,7 @@
 #include "../ResourceManager/ResourceManager.hpp"
 #include "../Scene/SceneManager.hpp"
 #include "../ECS/EntityManager.hpp"
+#include "../Renderer/Renderer.hpp"
 
 class Core
 {
@@ -21,6 +22,7 @@ private:
 	ResourceManager resourceManager;
 	SceneManager sceneManager;
 	EntityManager entityManager;
+	Renderer renderer;
 
 public:
 	Core(int windowWidth, int windowHeight, const std::string& windowTitle, int targetFPS);

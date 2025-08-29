@@ -3,6 +3,7 @@
 #include "../Input/Input.hpp"
 #include "../ResourceManager/ResourceManager.hpp"
 #include "../ECS/EntityManager.hpp"
+#include "../Renderer/Renderer.hpp"
 #include "../ECS/Entity.hpp"
 #include "../ECS/Components.hpp"
 
@@ -16,9 +17,10 @@ protected:
 	ResourceManager& resourceManager;
 	SceneManager& sceneManager;
 	EntityManager& entityManager;
+	Renderer& renderer;
 
 public:
-	Scene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager);
+	Scene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager, Renderer& renderer);
 
 	virtual void update() = 0;
 
