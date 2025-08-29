@@ -8,8 +8,8 @@ void Renderer::render(EntityManager& entityManager)
 	std::vector<Entity> entitiesWithTransformAndSprite = entityManager.getEntitiesWithTransformAndSprite();
 	for (const Entity& e : entitiesWithTransformAndSprite)
 	{
-		Sprite* sprite = entityManager.getSprite(e);
 		TransformComponent* transform = entityManager.getTransform(e);
+		Sprite* sprite = entityManager.getSprite(e);
 
 		Rectangle dest = {
 			transform->position.x,
@@ -23,7 +23,34 @@ void Renderer::render(EntityManager& entityManager)
 		DrawTexturePro(*sprite->texture, sprite->source, dest, origin, transform->rotation, sprite->tint);
 	}
 
-	// ...
+	// Rectangles
+	std::vector<Entity> entitiesWithTransformAndRectangle = entityManager.getEntitiesWithTransformAndRectangle();
+	for (const Entity& e : entitiesWithTransformAndRectangle)
+	{
+		TransformComponent* transform = entityManager.getTransform(e);
+		RectangleShape* rectangle = entityManager.getRectangle(e);
+
+		Rectangle rec = {
+			transform->position.x,
+			transform->position.y,
+			rectangle->width* transform->scale.x,
+			rectangle->height* transform->scale.y
+		};
+
+		Vector2 origin = { 0, 0 };
+
+		DrawRectanglePro(rec, origin, transform->rotation, rectangle->color);
+	}
+
+	// Circles
+	std::vector<Entity> entitiesWithTransformAndCircle = entityManager.getEntitiesWithTransformAndCircle();
+	for (const Entity& e : entitiesWithTransformAndCircle)
+	{
+		TransformComponent* transform = entityManager.getTransform(e);
+		CircleShape* circle = entityManager.getCircle(e);
+
+		DrawCircle(transform->position.x, transform->position.y, circle->radius * transform->scale.x, circle->color);
+	}
 
 	// ... also apply camera and HUD
 
