@@ -4,6 +4,7 @@
 #include "../ResourceManager/ResourceManager.hpp"
 #include "../ECS/EntityManager.hpp"
 #include "../Renderer/Renderer.hpp"
+#include "../CameraSystem/CameraSystem.hpp"
 #include "../ECS/Entity.hpp"
 #include "../ECS/Components.hpp"
 
@@ -18,9 +19,10 @@ protected:
 	SceneManager& sceneManager;
 	EntityManager& entityManager;
 	Renderer& renderer;
+	CameraSystem& cameraSystem;
 
 public:
-	Scene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager, Renderer& renderer);
+	Scene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem);
 
 	virtual void update() = 0;
 

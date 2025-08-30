@@ -1,9 +1,13 @@
 #include "Renderer.hpp"
 
-void Renderer::render(EntityManager& entityManager)
+void Renderer::render(EntityManager& entityManager, Camera2D camera)
 {
 	BeginDrawing();
 	
+	ClearBackground(WHITE);
+
+	BeginMode2D(camera);
+
 	// Sprites
 	std::vector<Entity> entitiesWithTransformAndSprite = entityManager.getEntitiesWithTransformAndSprite();
 	for (const Entity& e : entitiesWithTransformAndSprite)
@@ -49,10 +53,12 @@ void Renderer::render(EntityManager& entityManager)
 		TransformComponent* transform = entityManager.getTransform(e);
 		CircleShape* circle = entityManager.getCircle(e);
 
-		DrawCircle(transform->position.x, transform->position.y, circle->radius * transform->scale.x, circle->color);
+		DrawCircleV(transform->position, circle->radius * transform->scale.x, circle->color);
 	}
 
-	// ... also apply camera and HUD
+	EndMode2D();
+
+	// TODO: HUD
 
 	EndDrawing();
 }

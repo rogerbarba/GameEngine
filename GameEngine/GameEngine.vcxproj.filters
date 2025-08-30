@@ -48,7 +48,7 @@
     <ClCompile Include="src\Renderer\Renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Camera\Camera.cpp">
+    <ClCompile Include="src\CameraSystem\CameraSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -92,7 +92,7 @@
     <ClInclude Include="src\Renderer\Renderer.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Camera\Camera.hpp">
+    <ClInclude Include="src\CameraSystem\CameraSystem.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

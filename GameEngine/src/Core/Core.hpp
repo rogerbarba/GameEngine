@@ -6,6 +6,7 @@
 #include "../Scene/SceneManager.hpp"
 #include "../ECS/EntityManager.hpp"
 #include "../Renderer/Renderer.hpp"
+#include "../CameraSystem/CameraSystem.hpp"
 
 class Core
 {
@@ -23,6 +24,7 @@ private:
 	SceneManager sceneManager;
 	EntityManager entityManager;
 	Renderer renderer;
+	CameraSystem cameraSystem;
 
 public:
 	Core(int windowWidth, int windowHeight, const std::string& windowTitle, int targetFPS);
