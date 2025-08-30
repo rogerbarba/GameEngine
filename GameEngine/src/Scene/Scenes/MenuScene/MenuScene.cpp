@@ -1,10 +1,13 @@
 #include "../../SceneManager.hpp"
 #include "MenuScene.hpp"
-#include <iostream>
 
-MenuScene::MenuScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem)
-	: Scene(input, resourceManager, sceneManager, entityManager, renderer, cameraSystem)
+MenuScene::MenuScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, HUD& hud)
+	: Scene(input, resourceManager, sceneManager, entityManager, renderer, cameraSystem, hud)
 {
+	// Resources
+	resourceManager.loadFont("Montserrat", "assets/Montserrat-Regular.otf");
+
+	// Entities
 	Entity box = entityManager.createEntity();
 	entityManager.addTransform(box, {
 		.position = { 100.0f, 20.0f },
@@ -15,7 +18,16 @@ MenuScene::MenuScene(Input& input, ResourceManager& resourceManager, SceneManage
 		.color = GREEN
 	});
 
-	// Player entity
+	Entity box2 = entityManager.createEntity();
+	entityManager.addTransform(box2, {
+		.position = { 500.0f, 0.0f },
+		});
+	entityManager.addRectangle(box2, {
+		.width = 100.0f,
+		.height = 100.0f,
+		.color = BLUE
+		});
+
 	Entity player = entityManager.createEntity();
 	entityManager.nameEntity(player, "player");
 	entityManager.addTransform(player, {
@@ -52,7 +64,14 @@ void MenuScene::update()
 
 void MenuScene::draw()
 {
+	ClearBackground(WHITE);
+
 	renderer.render(entityManager, cameraSystem.getCamera());
+
+	hud.drawTextDefault("Hola, aixo es Raylib.", 20, 20, 24, RED);
+
+	Font montserrat = resourceManager.getFont("Montserrat");
+	hud.drawText(montserrat, "This is Montserrat", { 200.0f, 200.0f }, { 0.0f, 0.0f }, 0.0f, 24, 1, BLUE);
 }
 
 MenuScene::~MenuScene()

@@ -140,6 +140,7 @@
     <ClCompile Include="src\CameraSystem\CameraSystem.cpp" />
     <ClCompile Include="src\Core\Core.cpp" />
     <ClCompile Include="src\ECS\EntityManager.cpp" />
+    <ClCompile Include="src\HUD\HUD.cpp" />
     <ClCompile Include="src\Input\Input.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Renderer\Renderer.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="src\ECS\Components.hpp" />
     <ClInclude Include="src\ECS\Entity.hpp" />
     <ClInclude Include="src\ECS\EntityManager.hpp" />
+    <ClInclude Include="src\HUD\HUD.hpp" />
     <ClInclude Include="src\Input\Input.hpp" />
     <ClInclude Include="src\Renderer\Renderer.hpp" />
     <ClInclude Include="src\ResourceManager\ResourceManager.hpp" />

@@ -5,6 +5,7 @@
 #include "../ECS/EntityManager.hpp"
 #include "../Renderer/Renderer.hpp"
 #include "../CameraSystem/CameraSystem.hpp"
+#include "../HUD/HUD.hpp"
 #include "../ECS/Entity.hpp"
 #include "../ECS/Components.hpp"
 
@@ -20,9 +21,10 @@ protected:
 	EntityManager& entityManager;
 	Renderer& renderer;
 	CameraSystem& cameraSystem;
+	HUD& hud;
 
 public:
-	Scene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem);
+	Scene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, HUD& hud);
 
 	virtual void update() = 0;
 

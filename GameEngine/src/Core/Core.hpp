@@ -7,6 +7,7 @@
 #include "../ECS/EntityManager.hpp"
 #include "../Renderer/Renderer.hpp"
 #include "../CameraSystem/CameraSystem.hpp"
+#include "../HUD/HUD.hpp"
 
 class Core
 {
@@ -25,6 +26,7 @@ private:
 	EntityManager entityManager;
 	Renderer renderer;
 	CameraSystem cameraSystem;
+	HUD hud;
 
 public:
 	Core(int windowWidth, int windowHeight, const std::string& windowTitle, int targetFPS);

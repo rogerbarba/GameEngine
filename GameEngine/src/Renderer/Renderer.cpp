@@ -2,10 +2,6 @@
 
 void Renderer::render(EntityManager& entityManager, Camera2D camera)
 {
-	BeginDrawing();
-	
-	ClearBackground(WHITE);
-
 	BeginMode2D(camera);
 
 	// Sprites
@@ -57,8 +53,4 @@ void Renderer::render(EntityManager& entityManager, Camera2D camera)
 	}
 
 	EndMode2D();
-
-	// TODO: HUD
-
-	EndDrawing();
 }
