@@ -7,4 +7,6 @@ class Renderer
 {
 public:
 	void render(EntityManager& entityManager, Camera2D camera);
+
+	void setBackgroundColor(Color color);
 };

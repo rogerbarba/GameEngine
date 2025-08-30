@@ -64,7 +64,7 @@ void MenuScene::update()
 
 void MenuScene::draw()
 {
-	ClearBackground(WHITE);
+	renderer.setBackgroundColor(WHITE);
 
 	renderer.render(entityManager, cameraSystem.getCamera());
 

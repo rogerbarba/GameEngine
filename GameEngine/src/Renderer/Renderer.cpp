@@ -54,3 +54,8 @@ void Renderer::render(EntityManager& entityManager, Camera2D camera)
 
 	EndMode2D();
 }
+
+void Renderer::setBackgroundColor(Color color)
+{
+	ClearBackground(color);
+}
