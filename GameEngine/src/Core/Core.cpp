@@ -8,6 +8,8 @@
 Core::Core(int windowWidth, int windowHeight, const std::string& windowTitle, int targetFPS)
 	: windowWidth(windowWidth), windowHeight(windowHeight), windowTitle(windowTitle), targetFPS(targetFPS)
 {
+	SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+	
 	InitWindow(this->windowWidth, this->windowHeight, this->windowTitle.c_str());
 
 	SetTargetFPS(this->targetFPS);
