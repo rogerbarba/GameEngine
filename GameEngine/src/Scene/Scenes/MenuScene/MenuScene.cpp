@@ -1,11 +1,13 @@
 #include "../../SceneManager.hpp"
 #include "MenuScene.hpp"
 
-MenuScene::MenuScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, HUD& hud)
-	: Scene(input, resourceManager, sceneManager, entityManager, renderer, cameraSystem, hud)
+MenuScene::MenuScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, HUD& hud, Audio& audio)
+	: Scene(input, resourceManager, sceneManager, entityManager, renderer, cameraSystem, hud, audio)
 {
 	// Resources
 	resourceManager.loadFont("Montserrat", "assets/Montserrat-Regular.otf");
+	resourceManager.loadSound("GameBonus", "assets/game-bonus.mp3");
+	resourceManager.loadMusic("SultansOfSwing", "assets/sultans-of-swing.mp3");
 
 	// Entities
 	Entity box = entityManager.createEntity();
@@ -54,10 +56,27 @@ void MenuScene::update()
 	TransformComponent* playerTransform = entityManager.getTransform(player);
 	Vector2 target = playerTransform->position;
 
-	if (IsKeyDown(KEY_RIGHT)) playerTransform->position.x += 2.0f;
-	if (IsKeyDown(KEY_LEFT)) playerTransform->position.x -= 2.0f;
-	if (IsKeyDown(KEY_UP)) playerTransform->position.y -= 2.0f;
-	if (IsKeyDown(KEY_DOWN)) playerTransform->position.y += 2.0f;
+	if (input.isKeyDown(KEY_RIGHT)) playerTransform->position.x += 2.0f;
+	if (input.isKeyDown(KEY_LEFT)) playerTransform->position.x -= 2.0f;
+	if (input.isKeyDown(KEY_UP)) playerTransform->position.y -= 2.0f;
+	if (input.isKeyDown(KEY_DOWN)) playerTransform->position.y += 2.0f;
+
+	Sound gameBonusSound = resourceManager.getSound("GameBonus");
+	if (input.isKeyPressed(KEY_Q)) audio.playSound(gameBonusSound);
+
+	Music sultansOfSwingMusic = resourceManager.getMusic("SultansOfSwing");
+	if (input.isKeyPressed(KEY_M))
+	{
+		if (audio.isMusicPlaying(sultansOfSwingMusic)) audio.stopMusic(sultansOfSwingMusic);
+		audio.playMusic(sultansOfSwingMusic);
+	}
+	if (input.isKeyPressed(KEY_P))
+	{
+		audio.isMusicPlaying(sultansOfSwingMusic) ? audio.pauseMusic(sultansOfSwingMusic) : audio.resumeMusic(sultansOfSwingMusic);
+	}
+	if (input.isKeyPressed(KEY_O)) audio.stopMusic(sultansOfSwingMusic);
+
+	audio.updateMusic(sultansOfSwingMusic);
 
 	cameraSystem.followTarget(target, { 25.0f, 25.0f });
 }

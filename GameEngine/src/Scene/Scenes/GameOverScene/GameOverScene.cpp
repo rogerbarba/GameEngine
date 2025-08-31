@@ -1,8 +1,8 @@
 #include "../../SceneManager.hpp"
 #include "GameOverScene.hpp"
 
-GameOverScene::GameOverScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, HUD& hud)
-	: Scene(input, resourceManager, sceneManager, entityManager, renderer, cameraSystem, hud)
+GameOverScene::GameOverScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, HUD& hud, Audio& audio)
+	: Scene(input, resourceManager, sceneManager, entityManager, renderer, cameraSystem, hud, audio)
 {
 	// ...
 }

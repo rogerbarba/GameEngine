@@ -8,6 +8,7 @@
 #include "../Renderer/Renderer.hpp"
 #include "../CameraSystem/CameraSystem.hpp"
 #include "../HUD/HUD.hpp"
+#include "../Audio/Audio.hpp"
 
 class Core
 {
@@ -27,6 +28,7 @@ private:
 	Renderer renderer;
 	CameraSystem cameraSystem;
 	HUD hud;
+	Audio audio;
 
 public:
 	Core(int windowWidth, int windowHeight, const std::string& windowTitle, int targetFPS);
