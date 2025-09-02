@@ -116,5 +116,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\.gitkeep" />
+    <None Include="scripts\test.lua" />
   </ItemGroup>
 </Project>
