@@ -16,7 +16,7 @@ Core::Core(int windowWidth, int windowHeight, const std::string& windowTitle, in
 
 	InitAudioDevice();
 
-	sceneManager.changeScene(new MenuScene(this->input, this->resourceManager, this->sceneManager, this->entityManager, this->renderer, this->cameraSystem, this->hud, this->audio));
+	sceneManager.changeScene(new MenuScene(this->input, this->resourceManager, this->sceneManager, this->entityManager, this->renderer, this->cameraSystem, this->hud, this->audio, this->collisionSystem));
 }
 
 Core::~Core()

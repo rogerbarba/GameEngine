@@ -1,8 +1,8 @@
 #include "../../SceneManager.hpp"
 #include "MenuScene.hpp"
 
-MenuScene::MenuScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, HUD& hud, Audio& audio)
-	: Scene(input, resourceManager, sceneManager, entityManager, renderer, cameraSystem, hud, audio)
+MenuScene::MenuScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, HUD& hud, Audio& audio, CollisionSystem& collisionSystem)
+	: Scene(input, resourceManager, sceneManager, entityManager, renderer, cameraSystem, hud, audio, collisionSystem)
 {
 	// Resources
 	resourceManager.loadFont("Montserrat", "assets/Montserrat-Regular.otf");
@@ -19,16 +19,6 @@ MenuScene::MenuScene(Input& input, ResourceManager& resourceManager, SceneManage
 		.height = 40.0f,
 		.color = GREEN
 	});
-
-	Entity box2 = entityManager.createEntity();
-	entityManager.addTransform(box2, {
-		.position = { 500.0f, 0.0f },
-		});
-	entityManager.addRectangle(box2, {
-		.width = 100.0f,
-		.height = 100.0f,
-		.color = BLUE
-		});
 
 	Entity player = entityManager.createEntity();
 	entityManager.nameEntity(player, "player");
@@ -61,6 +51,8 @@ void MenuScene::update()
 	if (input.isKeyDown(KEY_UP)) playerTransform->position.y -= 2.0f;
 	if (input.isKeyDown(KEY_DOWN)) playerTransform->position.y += 2.0f;
 
+	cameraSystem.followTarget(target, { 25.0f, 25.0f });
+
 	Sound gameBonusSound = resourceManager.getSound("GameBonus");
 	if (input.isKeyPressed(KEY_Q)) audio.playSound(gameBonusSound);
 
@@ -77,8 +69,6 @@ void MenuScene::update()
 	if (input.isKeyPressed(KEY_O)) audio.stopMusic(sultansOfSwingMusic);
 
 	audio.updateMusic(sultansOfSwingMusic);
-
-	cameraSystem.followTarget(target, { 25.0f, 25.0f });
 }
 
 void MenuScene::draw()

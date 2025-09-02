@@ -139,6 +139,7 @@
   <ItemGroup>
     <ClCompile Include="src\Audio\Audio.cpp" />
     <ClCompile Include="src\CameraSystem\CameraSystem.cpp" />
+    <ClCompile Include="src\CollisionSystem\CollisionSystem.cpp" />
     <ClCompile Include="src\Core\Core.cpp" />
     <ClCompile Include="src\ECS\EntityManager.cpp" />
     <ClCompile Include="src\HUD\HUD.cpp" />
@@ -155,6 +156,7 @@
   <ItemGroup>
     <ClInclude Include="src\Audio\Audio.hpp" />
     <ClInclude Include="src\CameraSystem\CameraSystem.hpp" />
+    <ClInclude Include="src\CollisionSystem\CollisionSystem.hpp" />
     <ClInclude Include="src\Core\Core.hpp" />
     <ClInclude Include="src\ECS\Components.hpp" />
     <ClInclude Include="src\ECS\Entity.hpp" />

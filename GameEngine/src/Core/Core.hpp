@@ -9,6 +9,7 @@
 #include "../CameraSystem/CameraSystem.hpp"
 #include "../HUD/HUD.hpp"
 #include "../Audio/Audio.hpp"
+#include "../CollisionSystem/CollisionSystem.hpp"
 
 class Core
 {
@@ -29,6 +30,7 @@ private:
 	CameraSystem cameraSystem;
 	HUD hud;
 	Audio audio;
+	CollisionSystem collisionSystem;
 
 public:
 	Core(int windowWidth, int windowHeight, const std::string& windowTitle, int targetFPS);
