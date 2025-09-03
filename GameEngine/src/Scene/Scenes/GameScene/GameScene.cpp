@@ -1,8 +1,10 @@
 #include "../../SceneManager.hpp"
 #include "GameScene.hpp"
 
-GameScene::GameScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, HUD& hud, Audio& audio, CollisionSystem& collisionSystem)
-	: Scene(input, resourceManager, sceneManager, entityManager, renderer, cameraSystem, hud, audio, collisionSystem)
+GameScene::GameScene(Input& input, EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, Scripting& scripting)
+	: Scene(entityManager, renderer, cameraSystem, scripting), input(input) { }
+
+void GameScene::init()
 {
 	// ...
 }
@@ -26,7 +28,7 @@ void GameScene::update()
 
 void GameScene::draw()
 {
-	// ...
+	renderer.render(entityManager, cameraSystem.getCamera());
 
 	if (paused)
 	{
@@ -34,7 +36,7 @@ void GameScene::draw()
 	}
 }
 
-GameScene::~GameScene()
+void GameScene::deInit()
 {
 	// ...
 }

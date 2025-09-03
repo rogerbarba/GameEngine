@@ -10,9 +10,11 @@ private:
 public:
 	void changeScene(Scene* scene);
 
+	void init();
+
 	void update();
 
 	void draw();
 
-	~SceneManager();
+	void deInit();
 };

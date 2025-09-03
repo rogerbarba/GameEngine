@@ -5,11 +5,13 @@
 class GameOverScene : public Scene
 {
 public:
-	GameOverScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, HUD& hud, Audio& audio, CollisionSystem& collisionSystem);
+	GameOverScene(EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, Scripting& scripting);
+
+	void init() override;
 
 	void update() override;
 
 	void draw() override;
 
-	~GameOverScene();
+	void deInit() override;
 };

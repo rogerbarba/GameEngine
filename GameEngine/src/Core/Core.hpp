@@ -1,6 +1,8 @@
 #pragma once
 
-#include <string>
+#include "sol/sol.hpp"
+#include "../Scripting/options.hpp"
+#include "../Scripting/Scripting.hpp"
 #include "../Input/Input.hpp"
 #include "../ResourceManager/ResourceManager.hpp"
 #include "../Scene/SceneManager.hpp"
@@ -10,14 +12,12 @@
 #include "../HUD/HUD.hpp"
 #include "../Audio/Audio.hpp"
 #include "../CollisionSystem/CollisionSystem.hpp"
+#include <string>
 
 class Core
 {
 private:
-	int windowWidth;
-	int windowHeight;
-	std::string windowTitle;
-	int targetFPS;
+	Options options;
 
 	void update();
 	void draw();
@@ -28,14 +28,16 @@ private:
 	EntityManager entityManager;
 	Renderer renderer;
 	CameraSystem cameraSystem;
-	HUD hud;
-	Audio audio;
-	CollisionSystem collisionSystem;
+	Scripting scripting;
 
 public:
-	Core(int windowWidth, int windowHeight, const std::string& windowTitle, int targetFPS);
+	Core(int windowWidth = 800, int windowHeight = 600, const std::string& windowTitle = "Window", int targetFPS = 60);
+
+	void init();
 
 	void run();
 
-	~Core();
+	void deInit();
+
+	void expose(sol::state& lua);
 };

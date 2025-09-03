@@ -152,6 +152,7 @@
     <ClCompile Include="src\Scene\Scenes\GameOverScene\GameOverScene.cpp" />
     <ClCompile Include="src\Scene\Scenes\GameScene\GameScene.cpp" />
     <ClCompile Include="src\Scene\Scenes\MenuScene\MenuScene.cpp" />
+    <ClCompile Include="src\Scripting\Scripting.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Audio\Audio.hpp" />
@@ -171,6 +172,8 @@
     <ClInclude Include="src\Scene\Scenes\GameScene\GameScene.hpp" />
     <ClInclude Include="src\Scene\Scenes\MenuScence.hpp" />
     <ClInclude Include="src\Scene\Scenes\MenuScene\MenuScene.hpp" />
+    <ClInclude Include="src\Scripting\options.hpp" />
+    <ClInclude Include="src\Scripting\Scripting.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\.gitkeep" />

@@ -6,26 +6,36 @@
 #include "../Scene/Scenes/GameOverScene/GameOverScene.hpp"
 
 Core::Core(int windowWidth, int windowHeight, const std::string& windowTitle, int targetFPS)
-	: windowWidth(windowWidth), windowHeight(windowHeight), windowTitle(windowTitle), targetFPS(targetFPS)
-{
-	SetConfigFlags(FLAG_WINDOW_RESIZABLE);
-	
-	InitWindow(this->windowWidth, this->windowHeight, this->windowTitle.c_str());
+	: options{ windowWidth, windowHeight, windowTitle, targetFPS } { }
 
-	SetTargetFPS(this->targetFPS);
+void Core::init()
+{
+	scripting.init(*this);
+	sol::state& lua = scripting.getLua();
+
+	lua.script_file("scripts/test.lua");
+	// run script files and all here
+
+	SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+
+	InitWindow(options.windowWidth, options.windowHeight, options.windowTitle.c_str());
+
+	SetTargetFPS(options.targetFPS);
 
 	InitAudioDevice();
 
-	sceneManager.changeScene(new MenuScene(this->input, this->resourceManager, this->sceneManager, this->entityManager, this->renderer, this->cameraSystem, this->hud, this->audio, this->collisionSystem));
+	sceneManager.changeScene(new MenuScene(this->entityManager, this->renderer, this->cameraSystem, this->scripting));
 }
 
-Core::~Core()
+void Core::deInit()
 {
+	sceneManager.deInit();
+
+	resourceManager.unloadAll();
+
 	CloseWindow();
 
 	CloseAudioDevice();
-
-	resourceManager.unloadAll();
 }
 
 void Core::run()
@@ -50,4 +60,16 @@ void Core::draw()
 	sceneManager.draw();
 
 	EndDrawing();
+}
+
+void Core::expose(sol::state& lua)
+{
+	lua.new_usertype<Options>("Options",
+		"windowWidth", &Options::windowWidth,
+		"windowHeight", &Options::windowHeight,
+		"windowTitle", &Options::windowTitle,
+		"targetFPS", &Options::targetFPS
+	);
+
+	lua["options"] = &options;
 }

@@ -1,8 +1,10 @@
 #include "../../SceneManager.hpp"
 #include "GameOverScene.hpp"
 
-GameOverScene::GameOverScene(Input& input, ResourceManager& resourceManager, SceneManager& sceneManager, EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, HUD& hud, Audio& audio, CollisionSystem& collisionSystem)
-	: Scene(input, resourceManager, sceneManager, entityManager, renderer, cameraSystem, hud, audio, collisionSystem)
+GameOverScene::GameOverScene(EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, Scripting& scripting)
+	: Scene(entityManager, renderer, cameraSystem, scripting) { }
+
+void GameOverScene::init()
 {
 	// ...
 }
@@ -14,10 +16,10 @@ void GameOverScene::update()
 
 void GameOverScene::draw()
 {
-	// ...
+	renderer.render(entityManager, cameraSystem.getCamera());
 }
 
-GameOverScene::~GameOverScene()
+void GameOverScene::deInit()
 {
 	// ...
 }
