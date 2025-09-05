@@ -1,8 +1,10 @@
 #pragma once
 
+#include <string>
 #include "sol/sol.hpp"
 #include "../Scripting/options.hpp"
 #include "../Scripting/Scripting.hpp"
+
 #include "../Input/Input.hpp"
 #include "../ResourceManager/ResourceManager.hpp"
 #include "../Scene/SceneManager.hpp"
@@ -12,7 +14,6 @@
 #include "../HUD/HUD.hpp"
 #include "../Audio/Audio.hpp"
 #include "../CollisionSystem/CollisionSystem.hpp"
-#include <string>
 
 class Core
 {
@@ -22,7 +23,6 @@ private:
 	void update();
 	void draw();
 
-	Input input;
 	ResourceManager resourceManager;
 	SceneManager sceneManager;
 	EntityManager entityManager;
@@ -40,4 +40,19 @@ public:
 	void deInit();
 
 	void expose(sol::state& lua);
+
+	void exposeOptions(sol::state& lua);
+	void exposeRaylibStructs(sol::state& lua);
+	void exposeRaylibColors(sol::state& lua);
+	void exposeKeysAndButtons(sol::state& lua);
+
+	void exposeInput(sol::state& lua);
+	void exposeResourceManager(sol::state& lua);
+	void exposeSceneManager(sol::state& lua);
+	void exposeEntityManager(sol::state& lua);
+	void exposeRenderer(sol::state& lua);
+	void exposeCameraSystem(sol::state& lua);
+	void exposeHUD(sol::state& lua);
+	void exposeAudio(sol::state& lua);
+	void exposeCollisionSystem(sol::state& lua);
 };

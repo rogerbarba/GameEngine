@@ -12,3 +12,8 @@ void Scripting::init(Core& core)
 
 	core.expose(this->lua);
 }
+
+void Scripting::load()
+{
+	lua.script_file("scripts/main.lua");
+}

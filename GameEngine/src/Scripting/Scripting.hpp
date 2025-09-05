@@ -12,5 +12,8 @@ private:
 
 public:
 	sol::state& getLua();
+
 	void init(Core& core);
+
+	void load();
 };

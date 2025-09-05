@@ -122,9 +122,12 @@
     <ClInclude Include="src\Scripting\options.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Scripting\structures.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\.gitkeep" />
-    <None Include="scripts\test.lua" />
+    <None Include="scripts\main.lua" />
   </ItemGroup>
 </Project>

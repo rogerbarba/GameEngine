@@ -6,12 +6,9 @@
 class GameScene : public Scene
 {
 private:
-	Input& input;
-
-	bool paused = false;
 
 public:
-	GameScene(Input& input, EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, Scripting& scripting);
+	GameScene(EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, Scripting& scripting);
 
 	void init() override;
 

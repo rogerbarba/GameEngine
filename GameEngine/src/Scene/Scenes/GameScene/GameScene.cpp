@@ -1,42 +1,43 @@
 #include "../../SceneManager.hpp"
 #include "GameScene.hpp"
 
-GameScene::GameScene(Input& input, EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, Scripting& scripting)
-	: Scene(entityManager, renderer, cameraSystem, scripting), input(input) { }
+GameScene::GameScene(EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, Scripting& scripting)
+	: Scene(entityManager, renderer, cameraSystem, scripting) { }
 
 void GameScene::init()
 {
-	// ...
+	sol::function initFunction = scripting.getLua()["GameSceneInit"];
+	if (initFunction.valid())
+	{
+		initFunction();
+	}
 }
 
 void GameScene::update()
 {
-	if (input.isKeyPressed(KEY_ESCAPE))
+	sol::function updateFunction = scripting.getLua()["GameSceneUpdate"];
+	if (updateFunction.valid())
 	{
-		paused = !paused;
+		updateFunction();
 	}
-
-	if (paused)
-	{
-		// handle pause menu input logic
-
-		return;
-	}
-
-	// ...
 }
 
 void GameScene::draw()
 {
 	renderer.render(entityManager, cameraSystem.getCamera());
 
-	if (paused)
+	sol::function drawFunction = scripting.getLua()["GameSceneDraw"];
+	if (drawFunction.valid())
 	{
-		// draw pause overlay
+		drawFunction();
 	}
 }
 
 void GameScene::deInit()
 {
-	// ...
+	sol::function deInitFunction = scripting.getLua()["GameSceneDeInit"];
+	if (deInitFunction.valid())
+	{
+		deInitFunction();
+	}
 }
