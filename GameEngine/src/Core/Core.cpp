@@ -1,9 +1,13 @@
 #include "raylib.h"
 #include "Core.hpp"
-#include "../Scene/Scenes/MenuScene/MenuScene.hpp"
 
 Core::Core(int windowWidth, int windowHeight, const std::string& windowTitle, int targetFPS)
-	: options{ windowWidth, windowHeight, windowTitle, targetFPS } { }
+	: options{ windowWidth, windowHeight, windowTitle, targetFPS }
+{
+	menuScene = new MenuScene(entityManager, renderer, cameraSystem, scripting);
+	gameScene = new GameScene(entityManager, renderer, cameraSystem, scripting);
+	gameOverScene = new GameOverScene(entityManager, renderer, cameraSystem, scripting);
+}
 
 void Core::init()
 {
@@ -18,7 +22,7 @@ void Core::init()
 
 	InitAudioDevice();
 
-	sceneManager.changeScene(new MenuScene(this->entityManager, this->renderer, this->cameraSystem, this->scripting));
+	sceneManager.changeScene(menuScene);
 }
 
 void Core::deInit()
@@ -198,20 +202,61 @@ void Core::exposeInput(sol::state& lua)
 		"isKeyPressed", &Input::isKeyPressed,
 		"isKeyDown", &Input::isKeyDown,
 		"isKeyReleased", &Input::isKeyReleased,
-		"isKeyUp", &Input::isKeyUp
+		"isKeyUp", &Input::isKeyUp,
 
-		// TODO ...
+		"isMouseButtonPressed", &Input::isMouseButtonPressed,
+		"isMouseButtonDown", &Input::isMouseButtonDown,
+		"isMouseButtonReleased", &Input::isMouseButtonReleased,
+		"isMouseButtonUp", &Input::isMouseButtonUp,
+
+		"getMouseX", &Input::getMouseX,
+		"getMouseY", & Input::getMouseY,
+		"getMousePosition", & Input::getMousePosition,
+		"getMouseDelta", & Input::getMouseDelta,
+		"getMouseWheelMove", & Input::getMouseWheelMove,
+		"getMouseWheelMoveV", & Input::getMouseWheelMoveV,
+
+		"setMousePosition", & Input::setMousePosition,
+		"setMouseOffset", & Input::setMouseOffset,
+		"setMouseScale", & Input::setMouseScale,
+		"setMouseCursor", & Input::setMouseCursor
 	);
+
+	lua["input"] = &input;
 }
 
 void Core::exposeResourceManager(sol::state& lua)
 {
-	// TODO: ...
+	lua.new_usertype<ResourceManager>("ResourceManager",
+		"loadTexture", &ResourceManager::loadTexture,
+		"getTexture", &ResourceManager::getTexture,
+		"loadSound", &ResourceManager::loadSound,
+		"getSound", &ResourceManager::getSound,
+		"loadMusic", &ResourceManager::loadMusic,
+		"getMusic", &ResourceManager::getMusic,
+		"loadFont", &ResourceManager::loadFont,
+		"getFont", &ResourceManager::getFont
+	);
+
+	lua["resourceManager"] = &resourceManager;
 }
 
 void Core::exposeSceneManager(sol::state& lua)
 {
-	// TODO: ...
+	lua.new_usertype<Scene>("Scene");
+	lua.new_usertype<MenuScene>("MenuScene", sol::base_classes, sol::bases<Scene>());
+	lua.new_usertype<GameScene>("GameScene", sol::base_classes, sol::bases<Scene>());
+	lua.new_usertype<GameOverScene>("GameOverScene", sol::base_classes, sol::bases<Scene>());
+
+	lua["menuScene"] = menuScene;
+	lua["gameScene"] = gameScene;
+	lua["gameOverScene"] = gameOverScene;
+
+	lua.new_usertype<SceneManager>("SceneManager",
+		"changeScene", &SceneManager::changeScene
+	);
+
+	lua["sceneManager"] = &sceneManager;
 }
 
 void Core::exposeEntityManager(sol::state& lua)

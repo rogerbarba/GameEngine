@@ -15,20 +15,32 @@
 #include "../Audio/Audio.hpp"
 #include "../CollisionSystem/CollisionSystem.hpp"
 
+#include "../Scene/Scenes/MenuScene/MenuScene.hpp"
+#include "../Scene/Scenes/GameScene/GameScene.hpp"
+#include "../Scene/Scenes/GameOverScene/GameOverScene.hpp"
+
 class Core
 {
 private:
-	Options options;
-
 	void update();
 	void draw();
 
+	Input input;
 	ResourceManager resourceManager;
 	SceneManager sceneManager;
 	EntityManager entityManager;
 	Renderer renderer;
 	CameraSystem cameraSystem;
+	HUD hud;
+	Audio audio;
+	CollisionSystem collisionSystem;
 	Scripting scripting;
+
+	Options options;
+	// TODO: Make unique_pointers
+	MenuScene* menuScene;
+	GameScene* gameScene;
+	GameOverScene* gameOverScene;
 
 public:
 	Core(int windowWidth = 800, int windowHeight = 600, const std::string& windowTitle = "Window", int targetFPS = 60);
