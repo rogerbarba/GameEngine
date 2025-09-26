@@ -5,7 +5,7 @@
 class GameOverScene : public Scene
 {
 public:
-	GameOverScene(EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, Scripting& scripting);
+	GameOverScene(EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, Scripting& scripting, Options& options);
 
 	void init() override;
 

@@ -113,6 +113,7 @@
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\programming\libraries\include\raylib;C:\programming\libraries\include\lua54;$(IncludePath)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -174,11 +175,13 @@
     <ClInclude Include="src\Scene\Scenes\MenuScene\MenuScene.hpp" />
     <ClInclude Include="src\Scripting\options.hpp" />
     <ClInclude Include="src\Scripting\Scripting.hpp" />
-    <ClInclude Include="src\Scripting\structures.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\.gitkeep" />
     <None Include="scripts\main.lua" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\..\..\Users\roger\Downloads\soil.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,8 +1,8 @@
 #include "../../SceneManager.hpp"
 #include "MenuScene.hpp"
 
-MenuScene::MenuScene(EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, Scripting& scripting)
-	: Scene(entityManager, renderer, cameraSystem, scripting) { }
+MenuScene::MenuScene(EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, Scripting& scripting, Options& options)
+	: Scene(entityManager, renderer, cameraSystem, scripting, options) { }
 
 void MenuScene::init()
 {
@@ -24,7 +24,7 @@ void MenuScene::update()
 
 void MenuScene::draw()
 {
-	renderer.render(entityManager, cameraSystem.getCamera());
+	renderer.render(entityManager, cameraSystem.getCamera(), options);
 
 	sol::function drawFunction = scripting.getLua()["MenuSceneDraw"];
 	if (drawFunction.valid())

@@ -1,8 +1,8 @@
 #include "../../SceneManager.hpp"
 #include "GameScene.hpp"
 
-GameScene::GameScene(EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, Scripting& scripting)
-	: Scene(entityManager, renderer, cameraSystem, scripting) { }
+GameScene::GameScene(EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, Scripting& scripting, Options& options)
+	: Scene(entityManager, renderer, cameraSystem, scripting, options) { }
 
 void GameScene::init()
 {
@@ -24,7 +24,7 @@ void GameScene::update()
 
 void GameScene::draw()
 {
-	renderer.render(entityManager, cameraSystem.getCamera());
+	renderer.render(entityManager, cameraSystem.getCamera(), options);
 
 	sol::function drawFunction = scripting.getLua()["GameSceneDraw"];
 	if (drawFunction.valid())

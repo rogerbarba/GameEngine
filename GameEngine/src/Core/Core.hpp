@@ -37,13 +37,12 @@ private:
 	Scripting scripting;
 
 	Options options;
-	// TODO: Make unique_pointers
 	MenuScene* menuScene;
 	GameScene* gameScene;
 	GameOverScene* gameOverScene;
 
 public:
-	Core(int windowWidth = 800, int windowHeight = 600, const std::string& windowTitle = "Window", int targetFPS = 60);
+	Core(int windowWidth = 800, int windowHeight = 600, const std::string& windowTitle = "Window", int targetFPS = 60, Color bgColor = WHITE);
 
 	void init();
 

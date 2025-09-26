@@ -2,11 +2,10 @@
 
 #include "../ECS/EntityManager.hpp"
 #include "../CameraSystem/CameraSystem.hpp"
+#include "../Scripting/options.hpp"
 
 class Renderer
 {
 public:
-	void render(EntityManager& entityManager, Camera2D camera);
-
-	void setBackgroundColor(Color color);
+	void render(EntityManager& entityManager, Camera2D camera, Options& options);
 };

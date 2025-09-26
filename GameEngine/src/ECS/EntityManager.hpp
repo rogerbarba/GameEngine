@@ -25,7 +25,7 @@ private:
 
 public:
 	// Entity
-	Entity createEntity();
+	Entity& createEntity();
 	void destroyEntity(Entity entity);
 	void nameEntity(Entity entity, const std::string& name);
 	Entity getNamedEntity(const std::string& name);
@@ -49,6 +49,4 @@ public:
 	std::vector<Entity> getEntitiesWithTransformAndRectangle();
 	std::vector<Entity> getEntitiesWithTransformAndCircle();
 	std::vector<Entity> getEntitiesWithTransformAndSprite();
-	std::vector<Entity> getEntitiesWithVelocity();
-	std::vector<Entity> getEntitiesWithHealth();
 };

@@ -1,12 +1,13 @@
 #include "EntityManager.hpp"
 
-Entity EntityManager::createEntity()
+Entity& EntityManager::createEntity()
 {
 	Entity entity = nextID++;
 
 	aliveEntities.emplace(entity);
 
-	return entity;
+	Entity& r = entity;
+	return r;
 }
 
 void EntityManager::destroyEntity(Entity entity)
@@ -143,32 +144,6 @@ std::vector<Entity> EntityManager::getEntitiesWithTransformAndSprite()
 		if (aliveEntities.find(e) != aliveEntities.end() && sprites.find(e) != sprites.end())
 		{
 			result.emplace_back(e);
-		}
-	}
-	return result;
-}
-
-std::vector<Entity> EntityManager::getEntitiesWithVelocity()
-{
-	std::vector<Entity> result;
-	for (const auto& pair : velocities)
-	{
-		if (aliveEntities.find(pair.first) != aliveEntities.end())
-		{
-			result.emplace_back(pair.first);
-		}
-	}
-	return result;
-}
-
-std::vector<Entity> EntityManager::getEntitiesWithHealth()
-{
-	std::vector<Entity> result;
-	for (const auto& pair : healths)
-	{
-		if (aliveEntities.find(pair.first) != aliveEntities.end())
-		{
-			result.emplace_back(pair.first);
 		}
 	}
 	return result;

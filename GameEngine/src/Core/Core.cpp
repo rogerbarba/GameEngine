@@ -1,12 +1,12 @@
 #include "raylib.h"
 #include "Core.hpp"
 
-Core::Core(int windowWidth, int windowHeight, const std::string& windowTitle, int targetFPS)
-	: options{ windowWidth, windowHeight, windowTitle, targetFPS }
+Core::Core(int windowWidth, int windowHeight, const std::string& windowTitle, int targetFPS, Color bgColor)
+	: options{ windowWidth, windowHeight, windowTitle, targetFPS, bgColor }
 {
-	menuScene = new MenuScene(entityManager, renderer, cameraSystem, scripting);
-	gameScene = new GameScene(entityManager, renderer, cameraSystem, scripting);
-	gameOverScene = new GameOverScene(entityManager, renderer, cameraSystem, scripting);
+	menuScene = new MenuScene(entityManager, renderer, cameraSystem, scripting, options);
+	gameScene = new GameScene(entityManager, renderer, cameraSystem, scripting, options);
+	gameOverScene = new GameOverScene(entityManager, renderer, cameraSystem, scripting, options);
 }
 
 void Core::init()
@@ -84,7 +84,8 @@ void Core::exposeOptions(sol::state& lua)
 		"windowWidth", &Options::windowWidth,
 		"windowHeight", &Options::windowHeight,
 		"windowTitle", &Options::windowTitle,
-		"targetFPS", &Options::targetFPS
+		"targetFPS", &Options::targetFPS,
+		"bgColor", &Options::bgColor
 	);
 
 	lua["options"] = &options;
@@ -103,7 +104,6 @@ void Core::exposeRaylibStructs(sol::state& lua)
 
 	// Color
 	lua.new_usertype<Color>("Color",
-		sol::constructors<Color(), Color(unsigned char, unsigned char, unsigned char, unsigned char)>(),
 		"r", &Color::r,
 		"g", &Color::g,
 		"b", &Color::b,
@@ -114,15 +114,15 @@ void Core::exposeRaylibStructs(sol::state& lua)
 	});
 
 	// Rectangle
-	lua.new_usertype<Rectangle>("Rectangle",
+	lua.new_usertype<Rectangle>("Rec",
 		sol::constructors<Rectangle(), Rectangle(float, float, float, float)>(),
 		"x", &Rectangle::x,
 		"y", &Rectangle::y,
 		"width", &Rectangle::width,
 		"height", &Rectangle::height
 	);
-	lua.set_function("Rectangle", [](float x, float y, float width, float height) {
-		return Rectangle{ x, y, width, height };
+	lua.set_function("Rec", [](float x, float y, float w, float h) {
+		return Rectangle{ x, y, w, h };
 	});
 
 	// Camera2D
@@ -131,6 +131,12 @@ void Core::exposeRaylibStructs(sol::state& lua)
 		"target", &Camera2D::target,
 		"rotation", &Camera2D::rotation,
 		"zoom", &Camera2D::zoom
+	);
+
+	// Texture2D
+	lua.new_usertype<Texture2D>("Texture2D",
+		"width", &Texture2D::width,
+		"height", &Texture2D::height
 	);
 }
 
@@ -243,6 +249,7 @@ void Core::exposeResourceManager(sol::state& lua)
 
 void Core::exposeSceneManager(sol::state& lua)
 {
+	// Scenes
 	lua.new_usertype<Scene>("Scene");
 	lua.new_usertype<MenuScene>("MenuScene", sol::base_classes, sol::bases<Scene>());
 	lua.new_usertype<GameScene>("GameScene", sol::base_classes, sol::bases<Scene>());
@@ -252,6 +259,7 @@ void Core::exposeSceneManager(sol::state& lua)
 	lua["gameScene"] = gameScene;
 	lua["gameOverScene"] = gameOverScene;
 
+	// SceneManager
 	lua.new_usertype<SceneManager>("SceneManager",
 		"changeScene", &SceneManager::changeScene
 	);
@@ -261,7 +269,89 @@ void Core::exposeSceneManager(sol::state& lua)
 
 void Core::exposeEntityManager(sol::state& lua)
 {
-	// TODO: ...
+	// Entity
+	lua.new_usertype<Entity>("Entity");
+
+	// Components
+	// TransformComponent
+	lua.new_usertype<TransformComponent>("Transform",
+		"position", &TransformComponent::position,
+		"rotation", &TransformComponent::rotation,
+		"scale", &TransformComponent::scale
+	);
+	lua.set_function("Transform", [](Vector2 position, float rotation, Vector2 scale) {
+		return TransformComponent{ position, rotation, scale };
+	});
+
+	// RectangleShape
+	lua.new_usertype<RectangleShape>("Rectangle",
+		"width", &RectangleShape::width,
+		"height", &RectangleShape::height,
+		"color", &RectangleShape::color
+	);
+	lua.set_function("Rectangle", [](float width, float height, Color color) {
+		return RectangleShape{ width, height, color };
+	});
+
+	// CircleShape
+	lua.new_usertype<CircleShape>("Circle",
+		"radius", &CircleShape::radius,
+		"color", &CircleShape::color
+	);
+	lua.set_function("Circle", [](float radius, Color color) {
+		return CircleShape{ radius, color };
+	});
+
+	// Sprite
+	lua.new_usertype<Sprite>("Sprite",
+		"texture", &Sprite::texture,
+		"source", &Sprite::source,
+		"tint", &Sprite::tint
+	);
+	lua.set_function("Sprite", [](Texture2D* texture, Rectangle source, Color tint) {
+		return Sprite{ texture, source, tint };
+	});
+
+	// Velocity
+	lua.new_usertype<Velocity>("Velocity",
+		"velocity", &Velocity::velocity
+	);
+	lua.set_function("Velocity", [](Vector2 velocity) {
+		return Velocity{ velocity };
+	});
+
+	// Health
+	lua.new_usertype<Health>("Health",
+		"current", &Health::current,
+		"max", &Health::max
+	);
+	lua.set_function("Health", [](int current, int max) {
+		return Health{ current, max };
+	});
+
+	// EntityManager
+	lua.new_usertype<EntityManager>("EntityManager",
+		"createEntity", &EntityManager::createEntity,
+		"destroyEntity", &EntityManager::destroyEntity,
+		"nameEntity", &EntityManager::nameEntity,
+		"getNamedEntity", &EntityManager::getNamedEntity,
+
+		"addTransform", &EntityManager::addTransform,
+		"addRectangle", &EntityManager::addRectangle,
+		"addCircle", &EntityManager::addCircle,
+		"addSprite", &EntityManager::addSprite,
+		"addVelocity", &EntityManager::addVelocity,
+		"addHealth", &EntityManager::addHealth,
+
+		"getTransform", &EntityManager::getTransform,
+		"getRectangle", &EntityManager::getRectangle,
+		"getCircle", &EntityManager::getCircle,
+		"getSprite", &EntityManager::getSprite,
+		"getVelocity", &EntityManager::getVelocity,
+		"getHealth", &EntityManager::getHealth
+	);
+
+	lua["entityManager"] = &entityManager;
 }
 
 void Core::exposeRenderer(sol::state& lua)
@@ -271,22 +361,72 @@ void Core::exposeRenderer(sol::state& lua)
 
 void Core::exposeCameraSystem(sol::state& lua)
 {
-	// TODO: ...
+	lua.new_usertype<CameraSystem>("CameraSystem",
+		"getCamera", &CameraSystem::getCamera,
+		"setUpCamera", &CameraSystem::setUpCamera,
+		"followTarget", &CameraSystem::followTarget,
+		"rotate", &CameraSystem::rotate,
+		"zoom", &CameraSystem::zoom,
+		"clampRotation", &CameraSystem::clampRotation,
+		"clampZoom", &CameraSystem::clampZoom
+	);
+
+	lua["cameraSystem"] = &cameraSystem;
 }
 
 void Core::exposeHUD(sol::state& lua)
 {
-	// TODO: ...
+	lua.new_usertype<HUD>("HUD",
+		"drawTextDefault", &HUD::drawTextDefault,
+		"drawText", &HUD::drawText
+	);
+
+	lua["hud"] = &hud;
 }
 
 void Core::exposeAudio(sol::state& lua)
 {
-	// TODO: ...
+	lua.new_usertype<Audio>("Audio",
+        // Sounds
+        "playSound", &Audio::playSound,
+        "stopSound", &Audio::stopSound,
+        "pauseSound", &Audio::pauseSound,
+        "resumeSound", &Audio::resumeSound,
+        "isSoundPlaying", &Audio::isSoundPlaying,
+        "setSoundVolume", &Audio::setSoundVolume,
+        "setSoundPitch", &Audio::setSoundPitch,
+        "setSoundPan", &Audio::setSoundPan,
+
+        // Music
+        "playMusic", &Audio::playMusic,
+        "updateMusic", &Audio::updateMusic,
+        "stopMusic", &Audio::stopMusic,
+        "pauseMusic", &Audio::pauseMusic,
+        "resumeMusic", &Audio::resumeMusic,
+        "isMusicPlaying", &Audio::isMusicPlaying,
+        "setMusicVolume", &Audio::setMusicVolume,
+        "setMusicPitch", &Audio::setMusicPitch,
+        "setMusicPan", &Audio::setMusicPan,
+        "seekMusic", &Audio::seekMusic,
+        "getMusicTimeLength", &Audio::getMusicTimeLength,
+        "getMusicTimePlayed", &Audio::getMusicTimePlayed,
+
+        // Other
+        "setMasterVolume", &Audio::setMasterVolume,
+        "getMasterVolume", &Audio::getMasterVolume
+    );
+
+    lua["audio"] = &audio;
 }
 
 void Core::exposeCollisionSystem(sol::state& lua)
 {
-	// TODO: ...
+	lua.new_usertype<CollisionSystem>("CollisionSystem",
+		"checkCollisionRecs", &CollisionSystem::checkCollisionRecs,
+		"checkCollisionCircles", &CollisionSystem::checkCollisionCircles,
+		"checkCollisionCircleRec", &CollisionSystem::checkCollisionCircleRec,
+		"getCollisionRec", &CollisionSystem::getCollisionRec
+	);
+
+	lua["collisionSystem"] = &collisionSystem;
 }
-
-

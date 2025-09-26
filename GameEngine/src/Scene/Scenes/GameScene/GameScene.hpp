@@ -8,7 +8,7 @@ class GameScene : public Scene
 private:
 
 public:
-	GameScene(EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, Scripting& scripting);
+	GameScene(EntityManager& entityManager, Renderer& renderer, CameraSystem& cameraSystem, Scripting& scripting, Options& options);
 
 	void init() override;
 
