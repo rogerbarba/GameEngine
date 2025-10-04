@@ -126,10 +126,6 @@
   <ItemGroup>
     <None Include="assets\.gitkeep" />
     <None Include="scripts\main.lua" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\..\..\Users\roger\Downloads\soil.jpg">
-      <Filter>Resource Files</Filter>
-    </Image>
+    <None Include="scripts\main-copy.lua" />
   </ItemGroup>
 </Project>

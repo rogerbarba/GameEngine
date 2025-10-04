@@ -178,10 +178,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\.gitkeep" />
+    <None Include="scripts\main-copy.lua" />
     <None Include="scripts\main.lua" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\..\..\Users\roger\Downloads\soil.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
