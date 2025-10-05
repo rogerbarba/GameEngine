@@ -122,6 +122,9 @@
     <ClInclude Include="src\Scripting\options.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\Scripting\utils.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\.gitkeep" />

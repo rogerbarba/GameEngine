@@ -12,15 +12,18 @@ Entity& EntityManager::createEntity()
 
 void EntityManager::destroyEntity(Entity entity)
 {
+	if (!aliveEntities.contains(entity))
+		return;
+
 	aliveEntities.erase(entity);
 
-	// Delete entity from namedEntities if it is named
-	for (const auto& pair : namedEntities)
+	// Erase from namedEntities safely
+	for (auto it = namedEntities.begin(); it != namedEntities.end(); )
 	{
-		if (pair.second == entity)
-		{
-			namedEntities.erase(pair.first);
-		}
+		if (it->second == entity)
+			it = namedEntities.erase(it);
+		else
+			++it;
 	}
 
 	transforms.erase(entity);

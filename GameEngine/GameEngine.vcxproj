@@ -175,6 +175,7 @@
     <ClInclude Include="src\Scene\Scenes\MenuScene\MenuScene.hpp" />
     <ClInclude Include="src\Scripting\options.hpp" />
     <ClInclude Include="src\Scripting\Scripting.hpp" />
+    <ClInclude Include="src\Scripting\utils.hpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\.gitkeep" />

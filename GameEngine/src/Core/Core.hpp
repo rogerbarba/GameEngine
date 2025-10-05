@@ -3,6 +3,7 @@
 #include <string>
 #include "sol/sol.hpp"
 #include "../Scripting/options.hpp"
+#include "../Scripting/utils.hpp"
 #include "../Scripting/Scripting.hpp"
 
 #include "../Input/Input.hpp"
@@ -37,12 +38,13 @@ private:
 	Scripting scripting;
 
 	Options options;
+	Utils utils;
 	MenuScene* menuScene;
 	GameScene* gameScene;
 	GameOverScene* gameOverScene;
 
 public:
-	Core(int windowWidth = 800, int windowHeight = 600, const std::string& windowTitle = "Window", int targetFPS = 60, Color bgColor = WHITE);
+	Core();
 
 	void init();
 
@@ -53,6 +55,7 @@ public:
 	void expose(sol::state& lua);
 
 	void exposeOptions(sol::state& lua);
+	void exposeUtils(sol::state& lua);
 	void exposeRaylibStructs(sol::state& lua);
 	void exposeRaylibColors(sol::state& lua);
 	void exposeKeysAndButtons(sol::state& lua);

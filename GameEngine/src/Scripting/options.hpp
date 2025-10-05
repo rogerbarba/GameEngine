@@ -5,9 +5,10 @@
 
 struct Options
 {
-	int windowWidth;
-	int windowHeight;
-	std::string windowTitle;
-	int targetFPS;
-	Color bgColor;
+	int windowWidth = 800;
+	int windowHeight = 600;
+	std::string windowTitle = "Window";
+	int targetFPS = 60;
+	Color bgColor = WHITE;
+	bool allowWindowResize = false;
 };

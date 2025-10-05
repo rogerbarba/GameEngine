@@ -1,8 +1,7 @@
 #include "raylib.h"
 #include "Core.hpp"
 
-Core::Core(int windowWidth, int windowHeight, const std::string& windowTitle, int targetFPS, Color bgColor)
-	: options{ windowWidth, windowHeight, windowTitle, targetFPS, bgColor }
+Core::Core()
 {
 	menuScene = new MenuScene(entityManager, renderer, cameraSystem, scripting, options);
 	gameScene = new GameScene(entityManager, renderer, cameraSystem, scripting, options);
@@ -14,7 +13,10 @@ void Core::init()
 	scripting.init(*this);
 	scripting.load();
 
-	SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+	if (options.allowWindowResize)
+	{
+		SetConfigFlags(FLAG_WINDOW_RESIZABLE);
+	}
 
 	InitWindow(options.windowWidth, options.windowHeight, options.windowTitle.c_str());
 
@@ -63,6 +65,7 @@ void Core::draw()
 void Core::expose(sol::state& lua)
 {
 	exposeOptions(lua);
+	exposeUtils(lua);
 	exposeRaylibStructs(lua);
 	exposeRaylibColors(lua);
 	exposeKeysAndButtons(lua);
@@ -85,10 +88,22 @@ void Core::exposeOptions(sol::state& lua)
 		"windowHeight", &Options::windowHeight,
 		"windowTitle", &Options::windowTitle,
 		"targetFPS", &Options::targetFPS,
-		"bgColor", &Options::bgColor
+		"bgColor", &Options::bgColor,
+		"allowWindowResize", &Options::allowWindowResize
 	);
 
 	lua["options"] = &options;
+}
+
+void Core::exposeUtils(sol::state& lua)
+{
+	lua.new_usertype<Utils>("Utils",
+		"getScreenWidth", &Utils::getScreenWidth,
+		"getScreenHeight", &Utils::getScreenHeight,
+		"getFrameTime", &Utils::getFrameTime
+	);
+
+	lua["utils"] = &utils;
 }
 
 void Core::exposeRaylibStructs(sol::state& lua)
@@ -378,7 +393,9 @@ void Core::exposeHUD(sol::state& lua)
 {
 	lua.new_usertype<HUD>("HUD",
 		"drawTextDefault", &HUD::drawTextDefault,
-		"drawText", &HUD::drawText
+		"drawText", &HUD::drawText,
+		"measureTextDefault", &HUD::measureTextDefault,
+		"measureText", &HUD::measureText
 	);
 
 	lua["hud"] = &hud;
