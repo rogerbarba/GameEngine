@@ -129,6 +129,5 @@
   <ItemGroup>
     <None Include="assets\.gitkeep" />
     <None Include="scripts\main.lua" />
-    <None Include="scripts\main-copy.lua" />
   </ItemGroup>
 </Project>

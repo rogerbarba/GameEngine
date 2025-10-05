@@ -179,7 +179,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="assets\.gitkeep" />
-    <None Include="scripts\main-copy.lua" />
     <None Include="scripts\main.lua" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
